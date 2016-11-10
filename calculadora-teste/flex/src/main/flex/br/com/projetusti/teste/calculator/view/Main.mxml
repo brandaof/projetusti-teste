@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
+         xmlns:s="library://ns.adobe.com/flex/spark"
+         xmlns:spicefactory="http://www.spicefactory.org/parsley"
+         xmlns:mx="library://ns.adobe.com/flex/mx"
+         title="Calculator"
+         width="275" height="270">
+    <!---
+         Vista da calculadora.
+         @author Brandao
+         @since 11/10/2015
+         @version 1.0.0
+    -->
+    <fx:Script>
+        <![CDATA[
+        import br.com.projetusti.teste.calculator.CalculatorOperators;
+
+        import mx.controls.Alert;
+        import mx.rpc.events.FaultEvent;
+        import mx.rpc.events.ResultEvent;
+
+        import br.com.projetusti.teste.calculator.CalculatorController;
+
+        [Bindable]
+        [Inject(id="calculatorController")]
+        public var calculatorController:CalculatorController;
+
+        /**
+         * Exibe a mensagem de erro caso ocorra uma falha no calculo.
+         * @param event Evento associado ao calculo.
+         */
+        private function showFault(event:FaultEvent):void {
+            Alert.show(event.toString(), "Fail");
+            resultField.text = "";
+        }
+
+        /**
+         * Atualiza o campo de resultado com o valor do calculo.
+         * @param event Evento associado ao calculo.
+         */
+        private function processResult(event:ResultEvent):void {
+            var valor:Object = event.result;
+            resultField.text = valor.toString();
+        }
+
+        /**
+         * Verifica se o valor informado é um número inteiro positivo.
+         * @param value Valor.
+         * @return Verdadeiro caso seja um número inteiro positivo. Caso contrário, falso.
+         */
+        private function isInt(value:String):Boolean {
+            return value.match(/^([0-9]+)$/) != null;
+        }
+
+        /**
+         * Verifica se o valor informado é um número real.
+         * @param value Valor.
+         * @return Verdadeiro caso seja um número real. Caso contrário, falso.
+         */
+
+        private function isNumber(value:String):Boolean {
+            return value.match(/^(\+|-)?([0-9]+(\.[0-9]+)?)$/) != null;
+        }
+
+        /**
+         * Executa o calculo.
+         * @param event Evento associado ao calculo.
+         */
+        private function calculatorActionListener(event:Event):void {
+
+            //contém o valor do campo number1Field
+            var n1Text:String = number1Field.text;
+
+            //contém o valor do campo number2Field
+            var n2Text:String = number2Field.text;
+
+            ////contém o valor da operação.
+            var operator:String = operations.selectedValue.toString();
+
+            //Determina qual tipo de validção aplicar aos campos number1Field e number2Field
+            switch (operator) {
+
+                case CalculatorOperators.SUM:
+                case CalculatorOperators.SUBTRACT:
+                case CalculatorOperators.MULTIPLY:
+                case CalculatorOperators.DIVIDE:
+
+                    //Verifica se é um número real.
+                    if (!isNumber(n1Text)) {
+                        Alert.show("Invalid number type: " + n1Text, "Warn");
+                        return;
+                    }
+                    else
+                    //Verifica se é um número real.
+                    if (!isNumber(n2Text)) {
+                        Alert.show("Invalid number type: " + n2Text, "Warn");
+                        return;
+                    }
+                    break;
+                case CalculatorOperators.POW:
+                case CalculatorOperators.SQUARE:
+
+                    //Verifica se é um número inteiro positivo.
+                    if (!isInt(n1Text)) {
+                        Alert.show("Invalid number type: " + n1Text, "Warn");
+                        return;
+                    }
+                    else
+                    //Verifica se é um número inteiro positivo.
+                    if (!isInt(n2Text)) {
+                        Alert.show("Invalid number type: " + n2Text, "Warn");
+                        return;
+                    }
+                    break;
+
+            }
+
+            //Converte o campo number1Field em um valor numérico.
+            var n1:Number = Number(n1Text);
+
+            //Converte o campo number2Field em um valor numérico.
+            var n2:Number = Number(n2Text);
+
+            //Executa o calculo e exibe o resultado no campo resultField ou exibe uma mensagem de erro.
+            calculatorController.calculate(n1, n2, operator).invoke(processResult, showFault);
+
+        }
+        ]]>
+    </fx:Script>
+
+    <!-- Elementos não visuais -->
+    <fx:Declarations>
+
+        <!-- Parsley -->
+        <spicefactory:ContextBuilder description="Contexto Principal">
+            <spicefactory:MessageSettings unhandledErrors="{ErrorPolicy.RETHROW}"/>
+            <spicefactory:FlexConfig type="{ApplicationConfig}"/>
+        </spicefactory:ContextBuilder>
+        <spicefactory:Configure/>
+
+        <s:RadioButtonGroup id="operations"/>
+
+    </fx:Declarations>
+    <!-- Interface -->
+
+    <s:Group>
+    <s:Label x="12" y="20" text="Number 1:"/>
+    <s:Label x="13" y="50" text="Number 2:"/>
+    <s:TextInput x="79" y="14" width="64" id="number1Field"/>
+    <s:TextInput x="80" y="44" width="63" id="number2Field"/>
+
+    <s:Label x="13" y="102" text="Operations:"/>
+
+    <s:RadioButton x="77"  y="84"  label="SUM" groupName="operations" selected="true" id="operationsSum"/>
+    <s:RadioButton x="170" y="84"  label="SUBTRACT" groupName="operations" id="operationsSubtract"/>
+    <s:RadioButton x="77"  y="110" label="MULTIPLY" groupName="operations" id="operationsMultiply"/>
+    <s:RadioButton x="170" y="110" label="DIVIDE" groupName="operations" id="operationsDivide"/>
+    <s:RadioButton x="77"  y="136" label="POW" groupName="operations" id="operationsPow"/>
+    <s:RadioButton x="170" y="136" label="SQUARE" groupName="operations" id="operationsSquare"/>
+
+    <s:Label x="10" y="204" text="Result:"/>
+
+    <s:TextInput x="79" y="196" id="resultField" width="159"/>
+    <s:Button x="10" y="161" label="Calculate" width="228" click="calculatorActionListener(event)"/>
+    </s:Group>
+
+</mx:TitleWindow>

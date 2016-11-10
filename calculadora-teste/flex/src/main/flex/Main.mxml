@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application pageTitle="teste"
+               xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:s="library://ns.adobe.com/flex/spark"
+               xmlns:mx="library://ns.adobe.com/flex/mx"
+               xmlns:spicefactory="http://www.spicefactory.org/parsley"
+               backgroundColor="#CCCCCC"
+               width="275" height="270"
+               resize="false"
+               applicationComplete="open()"
+               >
+
+    <fx:Script>
+		<![CDATA[
+        import ApplicationConfig;
+        import mx.core.Window;
+        import mx.managers.PopUpManager;
+
+        import org.spicefactory.parsley.core.messaging.ErrorPolicy;
+
+        import br.com.projetusti.teste.calculator.view.Main;
+
+        function open() {
+            var calculator:br.com.projetusti.teste.calculator.view.Main = new br.com.projetusti.teste.calculator.view.Main();
+            PopUpManager.addPopUp(calculator, this, false);
+        }
+        ]]>
+	</fx:Script>
+
+    <fx:Style>
+        @namespace s "library://ns.adobe.com/flex/spark";
+        @namespace mx "library://ns.adobe.com/flex/mx";
+
+        global {
+            text-align: left;
+            focus-color: #999999;
+        }
+
+    </fx:Style>
+
+    <!-- Elementos não visuais -->
+    <fx:Declarations>
+        <!-- Parsley -->
+        <spicefactory:ContextBuilder description="Contexto Principal">
+            <spicefactory:MessageSettings unhandledErrors="{ErrorPolicy.RETHROW}"/>
+            <spicefactory:FlexConfig type="{ApplicationConfig}"/>
+        </spicefactory:ContextBuilder>
+        <spicefactory:Configure/>
+
+    </fx:Declarations>
+
+</s:Application>

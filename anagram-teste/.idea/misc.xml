@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
+  <component name="FlexPMDProjectComponent">
+    <option name="flexPMDPath" value="" />
+    <option name="customRulePath" value="" />
+    <option name="additionalParameters" value="-Xmx256m" />
+  </component>
+  <component name="IdProvider" IDEtalkID="77D291E8EB32EF7F45C439E63161262B" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                        http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>br.com.projetusti</groupId>
+    <artifactId>teste</artifactId>
+    <packaging>pom</packaging>
+    <version>${teste.version}</version>
+
+    <!-- Descrição do projeto -->
+    <description>Exame admissional da Projetus TI</description>
+
+    <!-- Módulos -->
+    <modules>
+        <module>web</module>
+    </modules>
+
+    <!-- Propriedades -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <base.sourceVersion>1.6</base.sourceVersion>
+        <groovy.version>2.0.4</groovy.version>
+        <teste.version>1.0.0</teste.version>
+    </properties>
+
+    <!-- Repositórios -->
+    <repositories>
+
+        <repository>
+            <id>projetus-local</id>
+            <name>Projetus Local</name>
+            <url>http://windows.projetusti.com:8082/nexus/content/groups/projetus-local</url>
+        </repository>
+
+        <repository>
+            <id>projetus-externo</id>
+            <name>Projetus Externo</name>
+            <url>http://windows.projetusti.com:8082/nexus/content/groups/projetus-externo</url>
+        </repository>
+
+        <repository>
+            <id>repositories-local</id>
+            <name>Repositorios externos (Local)</name>
+            <url>http://windows.projetusti.com:8082/nexus/content/groups/repositories-local</url>
+        </repository>
+
+        <repository>
+            <id>repositories-externo</id>
+            <name>Repositorios externos (Externo)</name>
+            <url>http://windows.projetusti.com:8082/nexus/content/groups/repositories-externo</url>
+        </repository>
+
+    </repositories>
+</project>

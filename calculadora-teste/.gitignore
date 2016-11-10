@@ -1,0 +1,5 @@
+.idea/
+*.iml
+*.jasper
+flex/target
+web/target

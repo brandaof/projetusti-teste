@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<spicefactory:Objects xmlns:fx="http://ns.adobe.com/mxml/2009"
+                      xmlns:spicefactory="http://www.spicefactory.org/parsley">
+    <!---
+         Contexto Geral da Aplicação
+         @author Diego Ramalho de Oliveira
+         @since 10/09/2014
+         @version 1.0.0
+    -->
+    <fx:Script>
+        import br.com.projetusti.teste.calculator.CalculatorControllerImp;
+        import br.com.projetusti.teste.remote.EndpointManager;
+    </fx:Script>
+    <fx:Declarations>
+        <!-- Managers -->
+        <spicefactory:Object type="{EndpointManager}" order="0"/>
+
+        <!-- Controllers -->
+        <spicefactory:Object id="calculatorController" type="{CalculatorControllerImp}"/>
+
+    </fx:Declarations>
+</spicefactory:Objects>
