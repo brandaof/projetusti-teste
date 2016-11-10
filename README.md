@@ -4,7 +4,7 @@ Teste feito para a empresa Projetus TI.
 
 ## Teste calculadora
 
-Neste teste foi utilizado a IDE IntelliJ, Flex, Java, Spark.
+Neste teste foi utilizado a IDE IntelliJ, Flex, Java e Spark.
 
 Criar no projeto "teste" uma calculadora. Ela deverá apresentar a seguinte estrutura:
 
