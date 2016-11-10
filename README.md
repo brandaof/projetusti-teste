@@ -26,7 +26,7 @@ Detalhes:
 
 - A aplicação deve rodar no Tomcat do Intelij sem a necessidade de ter que empacotá-la manualmente.
 
-## Anagrama teste
+## Teste anagrama
 
 Neste teste foi utilizado a IDE IntelliJ e Java.
 
